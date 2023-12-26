@@ -14,7 +14,7 @@ data "aws_ami_ids" "amazon_linux" {
 resource "aws_instance" "server" {
   ami = data.aws_ami_ids.amazon_linux.ids[0]
   instance_type = var.instance_type
-  subnet_id = aws_subnet.subnet.id
+  subnet_id = aws_subnet.subnet["public-subnet"].id
   key_name = var.key
   tags={
     Name="ec2-${var.instance_type}"

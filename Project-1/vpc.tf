@@ -14,11 +14,12 @@ resource "aws_internet_gateway" "gw" {
 
 resource "aws_subnet" "subnet" {
   vpc_id = aws_vpc.vpc.id
-  cidr_block = var.subnet_cidr
+  for_each = var.subnet_cidr
+  cidr_block = each.value
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "Public-subnet"
+    Name = each.key
   }
   depends_on = [ aws_vpc.vpc ]
 }

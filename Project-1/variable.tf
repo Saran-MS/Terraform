@@ -7,9 +7,12 @@ variable "vpc_cidr" {
 }
 
 variable "subnet_cidr" {
-  default = "10.0.1.0/24"
+  type = map
+  default = {
+    public-subnet : "10.0.1.0/24"
+    private-subnet: "10.0.2.0/24"
+  }
 }
 
-variable "key" {
-}
+variable "key" {}
   
